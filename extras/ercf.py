@@ -429,8 +429,8 @@ class Ercf:
 
     def handle_connect(self):
         # Setup background file based logging before logging any messages
-        if self.logfile_level >= 0:
-            logfile_path = self.printer.start_args['log_file']
+        logfile_path = self.printer.start_args.get('log_file', None)
+        if self.logfile_level >= 0 and logfile_path:
             dirname = os.path.dirname(logfile_path)
             if dirname == None:
                 ercf_log = '/tmp/ercf.log'
